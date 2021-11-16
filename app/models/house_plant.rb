@@ -1,0 +1,2 @@
+class HousePlant < ApplicationRecord
+end
