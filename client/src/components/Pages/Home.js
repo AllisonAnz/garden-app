@@ -1,18 +1,18 @@
 import React from "react";
 import { Login } from "./Login"
-import { useEffect, useState } from "react";
+//import { useEffect} from "react";
 
 export const Home = () => {
-    const [plants, setPlants] = useState([])
-    const plantApi = 'http://localhost:3000/users'
+    //const [plants, setPlants] = useState([])
+    //const userApi = 'http://localhost:3000/users'
 
-    useEffect(() => {
-        
-        fetch("http://localhost:3000/users")
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-    }, [])
+    //useEffect(() => {
+    //    
+    //    fetch(userApi)
+    //        .then(response => response.text())
+    //        .then(result => console.log(result))
+    //        .catch(error => console.log('error', error));
+    //}, [])
 
 
     return (

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update]
+
+  resources :plants, only: [:index, :show, :create, :update] do 
+    resources :garden_plants, only: [:show, :index]
+  end
+    
+  resources :garden_plants, only: [:index, :show, :create] 
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
