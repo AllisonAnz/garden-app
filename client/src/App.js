@@ -24,7 +24,7 @@ function App() {
             <Route path="/gardenplants" element={<GardenPlantList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={< UserDashboard />} ></Route>
-            <Route path="/plants/:id" element={< GardenPlantPage />} ></Route>
+            <Route path="/plants/:id" element={< GardenPlantPage/>} ></Route>
           </Routes>
         </div>
       </Router>

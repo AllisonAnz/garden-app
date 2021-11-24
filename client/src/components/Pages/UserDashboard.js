@@ -7,20 +7,7 @@ import { useEffect, useState } from "react";
 
 
 export default function UserDashboard() {
-    const [plants, setPlants] = useState([])
-    const plantApi = '/plants'
 
-    useEffect(() => {
-
-        fetch(plantApi)
-            .then(response => response.json())
-            .then(plants => setPlants(plants))
-            .catch(error => console.log('error', error));
-    }, [])
-
-    plants.map((plant) => {
-        console.log(plant.plantable.name)
-    })
     return (
         <div>
             <h1>Dashboard</h1>

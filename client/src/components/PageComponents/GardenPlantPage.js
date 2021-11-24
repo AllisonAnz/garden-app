@@ -5,8 +5,8 @@ import { Tabs, Tab } from 'react-bootstrap'
 
 
 
-export default function GardenPlantPage(props) {
-    const [plants, setPlant] = useState([])
+export default function GardenPlantPage() {
+    const [plant, setPlant] = useState({})
     const params = useParams()
 
     useEffect(() => {
@@ -16,11 +16,14 @@ export default function GardenPlantPage(props) {
             .then(plants => setPlant(plants))
             .catch(error => console.log('error', error));
     }, [params.id])
+    //debugger
+    if (plant && plant.plantable){
 
-    const { image, last_watered, last_fertilized, sun_requirement, description } = plants
-    const { name, life_cycle, color, garden_location, height, planting_season, bloom_season, planted, days_to_germinate, days_to_bloom, notes } = plants.plantable
-
-    return (
+        const { image, last_watered, last_fertilized, sun_requirement, description } = plant
+        const { name, life_cycle, color, garden_location, height, planting_season, bloom_season, planted, days_to_germinate, days_to_bloom, notes } = plant.plantable
+        
+    
+        return (
         <div>
             <div className="container" id="plant-section">
                 <div className="row">
@@ -100,5 +103,9 @@ export default function GardenPlantPage(props) {
 
         </div>
     )
+        } else {
+            return (
+                <div>loading...</div>
+            )
+            }
 }
-
