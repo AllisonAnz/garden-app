@@ -232,3 +232,65 @@ export default function GardenPlantPage() {
     )
 }
 
+{
+    "plantable_type": "GardenPlant",
+        "description": "Odio iste et. Ab enim voluptatibus.",
+            "plantable": {
+        "name": "Sunflower",
+            "life_cycle": "annual",
+                "color": "orchid",
+                    "garden_location": "front second from right",
+                        "height": "3 inches",
+                            "planting_season": "Feb-March",
+                                "bloom_season": "July",
+                                    "planted": "2021-02-15",
+                                        "days_to_germinate": 10,
+                                            "days_to_bloom": 35,
+                                                "notes": "Testing Testing"
+    }
+}
+
+// def create
+//        #plant = GardenPlant.create!(plant_params)
+//        plant = Plant.create!(plant_params)
+//        render json: plant, status: : created
+//  end
+
+//def plant_params
+    //params.permit(: description, : user_id, : plantable_id, : plantable_type)
+//end
+
+{
+    "description": "Odio iste et. Ab enim voluptatibus.",
+        "user_id": 1,
+            "plantable_type": "GardenPlant",
+                "plantable_id": 9
+}
+
+// plant = "garden"
+
+// def create(name)
+// if name === "garden"
+//  GardenPlant.create(name: name)
+//  elsif name === "veggie"
+//   VeggiePlant.create(name: name)
+// end 
+// end
+
+// create(plant)
+
+// plant = "GardenPlant"
+// create(plant)
+//  def create(plantable_type)
+//      if plantable_type === "GardenPlant"
+//          plant_type = GardenPlant.create!(name: "gtest")
+//       elsif plantable_type === "VeggiePlant"
+//          veggie_type = VeggiePlant.create!(name: "vtest")
+//        elsif plantable_type === "HousePlant"
+//          plant_type = HousePlant.create!(name: "htest")
+//      end
+// end
+// newplant = create(plant)
+
+// plant = Plant.create(user_id: 1, plantable_id: new_plant.id, plantable_type: new_plant)
+// planttest = Plant.new(user_id: 1, plantable_id: new_plant.id, plantable_type: new_plant)

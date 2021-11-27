@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import PlantCards from "../PageComponents/PlantCards";
 
 
-export const GardenPlantList = () => {
-    const [gardenPlants, setGardenPlants] = useState([])
+export const HousePlantList = () => {
+    const [housePlants, setHousePlants] = useState([])
     const plantApi = '/plants'
 
 
@@ -15,10 +15,10 @@ export const GardenPlantList = () => {
         fetch(plantApi)
             .then(response => response.json())
             .then(plants => plants.map(plant => {
-               if (plant.plantable_type === "GardenPlant"){
-                    setGardenPlants(prevGardenPlants => [...prevGardenPlants, plant])
-               }
-                
+                if (plant.plantable_type === "HousePlant") {
+                    setHousePlants(prevHousePlants => [...prevHousePlants, plant])
+                }
+
             }))
             .catch(error => console.log('error', error));
     }, [])
@@ -27,10 +27,10 @@ export const GardenPlantList = () => {
 
     return (
         <div>
-            <h1>Garden Plants</h1>
+            <h1>House Plants</h1>
             <div className="container" >
                 <div className="card-columns">
-                    {gardenPlants.map((plant) => {
+                    {housePlants.map((plant) => {
                         return <PlantCards key={plant.id} plant={plant} />
                     })}
 

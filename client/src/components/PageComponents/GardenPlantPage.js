@@ -49,6 +49,8 @@ export default function GardenPlantPage() {
                             <dt className="col-sm-3">Notes</dt>
                             <dd className="col-sm-9">{notes}</dd>
                         </dl>
+                        <button onClick={}>Edit</button>
+                       <button> Delete</button>
                     </div>
                 </div>
             </div>

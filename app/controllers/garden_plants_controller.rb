@@ -7,8 +7,13 @@ class GardenPlantsController < ApplicationController
         gardenplant = find_garden_plant
         render json: gardenplant 
     end
+
+    def create 
+        garden_plant = GardenPlant.create!(garden_plant_params)
+        render json: garden_plant, status: :created
+    end
     
-     def plant_index
+    def plant_index
         garden_plant = GardenPlant.find_garden_plant 
         plants = garden_plant.plants
         render json: plants, include: :garden_plant
@@ -23,5 +28,9 @@ class GardenPlantsController < ApplicationController
 
     def find_garden_plant
         GardenPlant.find(params[:id])
+    end
+
+    def garden_plant_params 
+        params.permit(:name)
     end
 end

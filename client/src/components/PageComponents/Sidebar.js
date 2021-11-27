@@ -26,7 +26,9 @@ export default function Sidebar() {
                                 <Nav.Link href="/newplant">New Plant</Nav.Link>
                                 <NavDropdown title="My Plants" id="offcanvasNavbarDropdown">
                                     <NavDropdown.Item href="/plants">All Plants</NavDropdown.Item>
-                                    <NavDropdown.Item href="/gardenplants">GardenPlants</NavDropdown.Item>
+                                    <NavDropdown.Item href="/gardenplants">Garden Plants</NavDropdown.Item>
+                                    <NavDropdown.Item href="/veggieplants">Vegetable Plants</NavDropdown.Item>
+                                    <NavDropdown.Item href="/houseplants">House Plants</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action5">
                                         Something else here
