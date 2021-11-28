@@ -2,15 +2,27 @@ import React from 'react'
 import { Nav, Navbar, Offcanvas, Container, Button, NavDropdown, Form, FormControl } from "react-bootstrap";
 
 
-export default function Sidebar() {
-   
+export default function Sidebar({setUser}) {
+    function handleLogoutClick(){
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
+        var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            redirect: 'manual'
+        };
+
+        fetch("http://localhost:3000/logout", requestOptions)
+            .then(response => response.json())
+            .then(setUser(null))
+            .catch(error => console.log('error', error));
+    }
     return (
         <>
-
             <Navbar bg="light" expand={false} >
                 <Container fluid>
-                    <Navbar.Brand href="#">Hello User</Navbar.Brand>
+                    <Navbar.Brand href="#">Dashboard</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -34,7 +46,7 @@ export default function Sidebar() {
                                         Something else here
                                     </NavDropdown.Item>
                                 </NavDropdown>
-                                <Nav.Link href="#action1">Logout</Nav.Link>
+                                <Button onClick={handleLogoutClick} >Logout</Button>
                             </Nav>
                             <Form className="d-flex">
                                 <FormControl

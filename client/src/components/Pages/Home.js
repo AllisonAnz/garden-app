@@ -1,22 +1,12 @@
 import React from "react";
 import { Login } from "./Login"
+//import { useEffect, useState } from "react";
+//import Sidebar from "../PageComponents/Sidebar"
 //import { useEffect} from "react";
 
-export const Home = () => {
-    //const [plants, setPlants] = useState([])
-    //const userApi = 'http://localhost:3000/users'
-
-    //useEffect(() => {
-    //    
-    //    fetch(userApi)
-    //        .then(response => response.text())
-    //        .then(result => console.log(result))
-    //        .catch(error => console.log('error', error));
-    //}, [])
-
-
-    return (
-        <div className="container">
+export const Home = ({setUser}) => {
+        return (
+            <div className="container">
             <br />
             <div className="row">
                 <div className="col-md-4">
@@ -28,11 +18,11 @@ export const Home = () => {
                     </div>
                 </div>
                 <div className="col-md-8">
-                    <Login />
+                    <Login onLogin={setUser}/>
                 </div>
             </div>
         </div>
 
 
-    );
+);
 };

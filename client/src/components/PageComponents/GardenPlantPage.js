@@ -2,12 +2,15 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Tabs, Tab } from 'react-bootstrap'
+//import EditPlant from './EditPlant';
 
 
 
 export default function GardenPlantPage() {
     const [plant, setPlant] = useState({})
     const params = useParams()
+    const [isEditing, setEditing] = useState(false)
+    const [isDeleted, setDeleted] = useState(false)
 
     useEffect(() => {
 
@@ -17,15 +20,151 @@ export default function GardenPlantPage() {
             .catch(error => console.log('error', error));
     }, [params.id])
     //debugger
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+       plantFetchRequest()
+       gardenPlantFetchRequest()
+
+        setEditing(false)
+    }
+
+    const plantFetchRequest = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "last_watered": plant.last_watered,
+            "last_fertilized": plant.last_fertilized,
+            "plantable": {
+                "color": plant.plantable.color
+            }
+        });
+
+        var requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'manual'
+        };
+
+        fetch(`http://localhost:3000/plants/${params.id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+    const gardenPlantFetchRequest = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            
+                "color": plant.plantable.color
+            
+
+        });
+
+        var requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'manual'
+        };
+
+        fetch(`http://localhost:3000/garden_plants/${params.id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+    const handleChange = (e) => {
+        console.log(e.target.name)
+        setPlant({
+            ...plant, plantable: {...plant.plantable, [e.target.name]: e.target.value }
+        })
+    }
+
+    const handlePlantChange = (e) => {
+        setPlant({
+            ...plant, [e.target.name]: e.target.value}
+            )
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = "";
+
+        var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'manual'
+        };
+
+        fetch("http://localhost:3000/plants/6", requestOptions)
+            .then(response => response.text())
+            .then(result => setDeleted(true))
+            .catch(error => console.log('error', error));
+    }
+    
     if (plant && plant.plantable){
 
-        const { image, last_watered, last_fertilized, sun_requirement, description } = plant
+        const { last_watered, last_fertilized, sun_requirement, description } = plant
         const { name, life_cycle, color, garden_location, height, planting_season, bloom_season, planted, days_to_germinate, days_to_bloom, notes } = plant.plantable
         
+        const Template = (
+            <div>
+
+            <dl className="row">
+                <dt className="col-sm-3">Life Cycle</dt>
+                <dd className="col-sm-9">{life_cycle}</dd>
+
+                <dt className="col-sm-3">Color</dt>
+                <dd className="col-sm-9">{color}</dd>
+
+                <dt className="col-sm-3">Last Watered</dt>
+                <dd className="col-sm-9">{last_watered}</dd>
+
+                <dt className="col-sm-3">Notes</dt>
+                <dd className="col-sm-9">{notes}</dd>
+            </dl>
+                <button type="button" className="btn" onClick={() => setEditing(true)}>Edit</button>
+            </div>
+        )
+
+        const editingTemplate = (
+            <form onSubmit={handleSubmit}>
+            <dl className="row">
+                <dt className="col-sm-3">Life Cycle</dt>
+                <input type="text" className="col-sm-9" name="life_cycle" placeholder={life_cycle} onChange={handleChange}></input>
+            
+
+                <dt className="col-sm-3">Color</dt>
+                    <input type="text" className="col-sm-9" name="color" placeholder={color} onChange={handleChange}></input>
+
+                <dt className="col-sm-3">Last Watered</dt>
+                    <input type="date" className="col-sm-9" name="last_watered" placeholder={last_watered} onChange={handlePlantChange}></input>
+
+                <dt className="col-sm-3">Notes</dt>
+                    <input type="text" className="col-sm-9" name="notes" placeholder={notes} onChange={handleChange}></input>
+            </dl>
+            <button type="submit">Save</button>
+            </form>
+        )
+
+        const DeletedTemplate = (
+            <div>Plant Deleted!</div>
+        )
+
     
         return (
         <div>
-            <div className="container" id="plant-section">
+            <div className="delete">{isDeleted ? DeletedTemplate : Template}</div>
+            <div className="plantcontainer" id="plant-section">
                 <div className="row">
                     <div className="col-md-6">
                         <img className="image-responsive" alt="Plant" src="https://watchandlearn.scholastic.com/content/dam/classroom-magazines/watchandlearn/videos/animals-and-plants/plants/what-are-plants-/What-Are-Plants.jpg" />
@@ -36,21 +175,12 @@ export default function GardenPlantPage() {
                                 <h1>{name}</h1>
                             </div>
                         </div>
-                        <dl className="row">
-                            <dt className="col-sm-3">Life Cycle</dt>
-                            <dd className="col-sm-9">{life_cycle}</dd>
-
-                            <dt className="col-sm-3">Color</dt>
-                            <dd className="col-sm-9">{color}</dd>
-
-                            <dt className="col-sm-3">Last Watered</dt>
-                            <dd className="col-sm-9">{last_watered}</dd>
-
-                            <dt className="col-sm-3">Notes</dt>
-                            <dd className="col-sm-9">{notes}</dd>
-                        </dl>
-                        <button onClick={}>Edit</button>
-                       <button> Delete</button>
+                    <div>
+                        <div className="edit">{isEditing ? editingTemplate : Template}</div>
+                    </div>
+                    <div>
+                    </div>
+                       <button type="button" className="btn" onClick={handleDelete}> Delete</button>
                     </div>
                 </div>
             </div>

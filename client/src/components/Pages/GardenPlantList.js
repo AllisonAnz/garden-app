@@ -18,7 +18,7 @@ export const GardenPlantList = () => {
                if (plant.plantable_type === "GardenPlant"){
                     setGardenPlants(prevGardenPlants => [...prevGardenPlants, plant])
                }
-                
+               return plant
             }))
             .catch(error => console.log('error', error));
     }, [])

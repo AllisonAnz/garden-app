@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { useState} from "react";
-import PlantCards from "../PageComponents/PlantCards";
+//import PlantCards from "../PageComponents/PlantCards";
 
 
 export const AddNewPlant = () => {
@@ -42,30 +42,30 @@ export const AddNewPlant = () => {
         
             <h1>Add New Plant</h1>
         <div className="container" >
-            <div class="form-check form-check-inline">
+            <div className="form-check form-check-inline">
                     <input className="form-check-input" type="radio" name="inlineRadioOptions" onChange={() => setActive(!active)} id="inlineRadio1" value="Garden"/>
-                <label class="form-check-label" for="inlineRadio1">Garden</label>
+                <label className="form-check-label" htmlFor="inlineRadio1">Garden</label>
             </div>
-            <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" onChange={() => console.log("veggie clicked")} id="inlineRadio2" value="Veggie"/>
-                <label class ="form-check-label" for="inlineRadio2">Veggie</label>
+            <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" onChange={() => console.log("veggie clicked")} id="inlineRadio2" value="Veggie"/>
+                <label className="form-check-label" htmlFor="inlineRadio2">Veggie</label>
             </div>
-            <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" onChange={() => console.log("house clicked")} id="inlineRadio3" value="House"/>
-                <label class ="form-check-label" for="inlineRadio3">House</label>
+            <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" onChange={() => console.log("house clicked")} id="inlineRadio3" value="House"/>
+                <label className="form-check-label" htmlFor="inlineRadio3">House</label>
             </div>
         <form onSubmit={handleSubmit}>
             <div className="container">
                 <div className="mb-3">
-                    <label for="name" className="form-label">Plant Name</label>
+                    <label className="form-label">Plant Name</label>
                     <input type="text" className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Plant Name" />
                 </div>
                 <div className="mb-3">
-                    <label for="type" className="form-label">Plant Type</label>
+                    <label className="form-label">Plant Type</label>
                     <input type="text" className="form-control" id="plant_type" value={type} onChange={(e) => setType(e.target.value)} placeholder="Type" />
                 </div>
                 <div className="mb-3">
-                    <label for="formGroupExampleInput" className="form-label">Example label</label>
+                    <label  className="form-label">Example label</label>
                     <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" />
                 </div>
                 <div className="col text-center">
