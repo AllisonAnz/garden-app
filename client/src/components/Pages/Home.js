@@ -4,9 +4,9 @@ import { Login } from "./Login"
 //import Sidebar from "../PageComponents/Sidebar"
 //import { useEffect} from "react";
 
-export const Home = ({setUser}) => {
-        return (
-            <div className="container">
+export const Home = ({ setUser }) => {
+    return (
+        <div className="container">
             <br />
             <div className="row">
                 <div className="col-md-4">
@@ -18,11 +18,11 @@ export const Home = ({setUser}) => {
                     </div>
                 </div>
                 <div className="col-md-8">
-                    <Login onLogin={setUser}/>
+                    <Login onLogin={setUser} />
                 </div>
             </div>
         </div>
 
 
-);
+    );
 };

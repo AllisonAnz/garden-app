@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export function Login({onLogin})  {
+export function Login({ onLogin }) {
     const [username, setUsername] = useState("");
 
     const handleSubmit = (e) => {
@@ -36,7 +36,7 @@ export function Login({onLogin})  {
 
                         <div className="form-group">
                             <label>UserName</label>
-                            <input type="text" className="form-control" value={username} placeholder="Enter Username" onChange={(e)=> setUsername(e.target.value)} />
+                            <input type="text" className="form-control" value={username} placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)} />
                         </div>
 
                         <div className="form-group">

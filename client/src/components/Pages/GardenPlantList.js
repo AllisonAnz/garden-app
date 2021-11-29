@@ -7,12 +7,12 @@ import PlantCards from "../PageComponents/PlantCards";
 
 export const GardenPlantList = () => {
     const [gardenPlants, setGardenPlants] = useState([])
-    const plantApi = '/plants'
+    //const plantApi = '/plants'
 
 
     useEffect(() => {
 
-        fetch(plantApi)
+        fetch('http://localhost:3000/plants')
             .then(response => response.json())
             .then(plants => plants.map(plant => {
                if (plant.plantable_type === "GardenPlant"){

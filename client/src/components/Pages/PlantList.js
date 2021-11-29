@@ -7,7 +7,7 @@ import PlantCards from "../PageComponents/PlantCards";
 
 export const PlantList = () => {
     const [plants, setPlants] = useState([])
-    const plantApi = '/plants'
+    const plantApi = 'http://localhost:3000/plants'
 
 
     useEffect(() => {

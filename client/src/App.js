@@ -15,20 +15,23 @@ import { HousePlantList } from "./components/Pages/HousePlantList";
 function App() {
   const [user, setUser] = useState(null);
 
-    useEffect(() => {
-      fetch("/me").then((response) => {
-        if (response.ok) {
-          response.json().then((user) => setUser(user));
-        }
-      });
-    }, []);
+  useEffect(() => {
+    fetch('http://localhost:3000/me').then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {
+          debugger
+        setUser(user)});
+        
+      }
+    });
+  }, [user]);
 
   if (user) {
     return (
       <>
         <Router>
           <NavBar />
-          <Sidebar user={user} setUser={setUser}/>
+          <Sidebar user={user} setUser={setUser} />
           <div className="pages">
             <Routes>
               <Route path="/newplant" element={<AddNewPlant />} />
@@ -37,24 +40,24 @@ function App() {
               <Route path="/veggieplants" element={<VeggiePlantList />} />
               <Route path="/houseplants" element={<HousePlantList />} />
               <Route path="/dashboard" element={< UserDashboard />} ></Route>
-              <Route path="/plants/:id" element={< GardenPlantPage/>} ></Route>
+              <Route path="/plants/:id" element={< GardenPlantPage />} ></Route>
             </Routes>
           </div>
         </Router>
       </>
-    ) 
-} else {
-  return (
-    <>
-    <Router>
-      <NavBar />
-    </Router>
-      < Home setUser={setUser}/>
+    )
+  } else {
+    return (
+      <>
+        <Router>
+          <NavBar />
+        </Router>
+        < Home setUser={setUser} />
       </>
 
 
-  );
-};
+    );
+  };
 }
 
 export default App;

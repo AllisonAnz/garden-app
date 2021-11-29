@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
       rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
       rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+      skip_before_action :authorize
     # GET /users
     def index 
         @users = User.all
@@ -8,12 +9,12 @@ class UsersController < ApplicationController
     end
 
     # GET /users/:id
-    def show
+    def show    
         user = User.find_by(id: session[:user_id])
         if user
           render json: user
         else
-          render json: { error: "Not authorized" }, status: :unauthorized
+          render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         end
     end
 

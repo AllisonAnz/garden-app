@@ -2,8 +2,8 @@ import React from 'react'
 import { Nav, Navbar, Offcanvas, Container, Button, NavDropdown, Form, FormControl } from "react-bootstrap";
 
 
-export default function Sidebar({setUser}) {
-    function handleLogoutClick(){
+export default function Sidebar({ setUser }) {
+    function handleLogoutClick() {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 

@@ -1,11 +1,10 @@
 
 class PlantsController < ApplicationController
-    before_action :authorize
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
-        plants = Plant.where(user_id: session[:user_id])
+        plants = Plants.all
         render json: plants
     end
 
